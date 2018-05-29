@@ -1,0 +1,63 @@
+﻿<Window x:Class="WpfDemo.Controls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Controls" Height="600" Width="525">
+    
+    <Window.Resources>
+        <BitmapImage x:Key="MinionImage" UriSource="Resources/Minion.png" />
+    </Window.Resources>
+
+    <StackPanel Margin="20">
+        
+        <Button HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal" Margin="8">
+                    <Image Height="48" Source="{StaticResource MinionImage}" />
+                    <TextBlock VerticalAlignment="Center" Margin="8,0,0,0" Text="Click me!" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        
+        <Separator />
+
+        <TextBlock Text="I'm a TextBlock, and I have a tooltip">
+            <TextBlock.ToolTip>
+                <StackPanel Orientation="Horizontal" Margin="8">
+                    <Image Height="24" Source="{StaticResource MinionImage}" />
+                    <TextBlock VerticalAlignment="Center" Margin="8,0,0,0" Text="This is a tooltip" />
+                </StackPanel>
+            </TextBlock.ToolTip>
+        </TextBlock>
+
+        <Separator />
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Password box:" Margin="0,0,8,0" />
+            <PasswordBox Grid.Column="1" />
+        </Grid>
+
+        <Separator />
+        
+        <TextBlock Text="This is an Expander:" />
+        <Expander>
+            <ScrollViewer Height="100">
+                <TextBlock TextWrapping="Wrap" Text="{Binding Poem}" />
+            </ScrollViewer>
+        </Expander>
+
+        <Separator />
+        
+        <TextBlock Text="This is a ListBox:" />
+        <ListView ItemsSource="{Binding Items}" />
+
+        <Separator />
+        
+        <TextBlock Text="This is a ComboBox:" />
+        <ComboBox ItemsSource="{Binding Items}" />
+        
+    </StackPanel>
+</Window>

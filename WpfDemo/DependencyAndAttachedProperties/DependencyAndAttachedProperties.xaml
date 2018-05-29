@@ -1,0 +1,33 @@
+﻿<Window x:Class="WpfDemo.DependencyAndAttachedProperties.DependencyAndAttachedProperties"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dependencyAndAttachedProperties="clr-namespace:WpfDemo.DependencyAndAttachedProperties"
+        Title="DependencyAndAttachedProperties" Height="300" Width="300">
+    
+    <Window.Resources>
+        <BitmapImage x:Key="MinionImage" UriSource="../Resources/Minion.png" />
+        <Style TargetType="Separator" BasedOn="{StaticResource {x:Type Separator}}">
+            <Setter Property="Margin" Value="0,12,0,12" />
+        </Style>
+    </Window.Resources>
+    
+    <StackPanel
+        Orientation="Vertical"
+        VerticalAlignment="Stretch"
+        HorizontalAlignment="Stretch">
+        
+        <dependencyAndAttachedProperties:MyCustomControl
+            Image="{StaticResource MinionImage}"
+            Title="This is the title"
+            Subtitle="This is the subtitle" />
+        
+        <Separator />
+        
+        <Button
+            dependencyAndAttachedProperties:MyBackgroundManager.Background="Aqua"
+            Width="100"
+            HorizontalAlignment="Left"
+            Content="My button" />
+        
+    </StackPanel>
+</Window>

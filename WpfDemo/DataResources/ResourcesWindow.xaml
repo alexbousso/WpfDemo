@@ -1,0 +1,54 @@
+﻿<Window x:Class="WpfDemo.DataResources.ResourcesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ResourcesWindow" Height="300" Width="300">
+    
+    <Window.Resources>
+        <SolidColorBrush x:Key="MyFavoriteColor" Color="DodgerBlue" />
+        <SolidColorBrush x:Key="MySolidBrush" Color="LightSlateGray" />
+        
+        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="MinWidth" Value="100" />
+        </Style>
+        
+        <Style x:Key="InheritedButtonStyle" TargetType="Button" BasedOn="{StaticResource MyAwesomeButtonStyle}">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="MinWidth" Value="100" />
+        </Style>
+    </Window.Resources>
+    
+    <StackPanel Margin="20">
+        <StackPanel.Resources>
+            <SolidColorBrush x:Key="AnotherColor" Color="Yellow" />
+        </StackPanel.Resources>
+        
+        <Button Content="My favorite color" Background="{StaticResource MyFavoriteColor}" />
+        <Button Content="Another color" Background="{StaticResource AnotherColor}" />
+        
+        <!--
+            The StaticResource lookup is done as follows:
+              - It searches for the style definition at the Button's resources
+              - Afterwards at the StackPanel's resources
+              - Then at the Window's resources
+              - If it doesn't find anything, it searches at the Application's resources
+              - If nothing is found the application throws a runtime esception
+        -->
+        <Button Content="Awesome style" Style="{StaticResource InheritedButtonStyle}" />
+
+        <Separator />
+        
+        <Button
+            Margin="0,0,0,8"
+            Content="Switch style"
+            Click="ButtonBase_OnClick" />
+        
+        <TextBlock
+            Margin="0,0,0,8"
+            Text="Static resource"
+            Background="{StaticResource MySolidBrush}" />
+        <TextBlock
+            Text="Dynamic resource"
+            Background="{DynamicResource MySolidBrush}" />
+    </StackPanel>
+</Window>
